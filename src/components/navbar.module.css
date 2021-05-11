@@ -1,0 +1,345 @@
+:root {
+  --lightGreen: #72e990;
+  --darkGreen: #2fda4e;
+  --almostWhite: #f1f2f9;
+  --white: #ffffff;
+  --black: #110f1a;
+  --red: #c42021;
+  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+.nav {
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  background: var(--black);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.logo {
+  height: auto;
+  width: 80px;
+  padding: 0.5rem;
+}
+.cart {
+  background: transparent;
+  height: 40px;
+  width: auto;
+  color: var(--almostWhite);
+}
+
+.cartWrapper {
+  position: relative;
+  margin-left: -3rem;
+}
+.btnCart {
+  border: none;
+  background: transparent;
+  position: relative;
+}
+.cartAmount {
+  height: 1.2rem;
+  width: 1.2rem;
+  border-radius: 50%;
+  background: var(--red);
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  place-content: center;
+  color: var(--white);
+}
+.navLinks {
+  display: none;
+  width: auto;
+}
+.navLinks ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.navLinks ul li {
+  padding: 0 2.4rem;
+  display: block;
+}
+.navLinks a {
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  color: var(--almostWhite);
+  transition: color 0.5s ease;
+}
+.navLinks a:hover {
+  color: var(--lightGreen);
+}
+
+.login {
+  border: none;
+  background: transparent;
+  display: none;
+  padding: 0 2.5rem;
+}
+.login {
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  color: var(--almostWhite);
+  transition: color 0.5s ease;
+  font-family: "Poppins", sans-serif;
+}
+.login:hover,
+.cartWrapper button svg:hover {
+  color: var(--lightGreen);
+}
+.cartWrapper button svg {
+  transition: color 0.5s ease;
+}
+.menuBars {
+  background: transparent;
+  border: none;
+  color: var(--almostWhite);
+  font-size: 2.5rem;
+  height: 40px;
+  outline: none;
+}
+.logincart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1.5rem;
+}
+.downMenuWrapper {
+  width: 100%;
+  height: 0;
+  position: absolute;
+  left: 0;
+  top: -10px;
+  margin-top: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  background: var(--black);
+  padding-bottom: 0.5rem;
+  transition: all 0.5s ease-in;
+  overflow: hidden;
+}
+.showMenu {
+  height: 200px;
+}
+.downMenuWrapper ul {
+  padding: 0.5rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.downMenuWrapper ul li {
+  padding: 0.5rem 0;
+}
+.downMenuWrapper button {
+  background: transparent;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  padding: 0.5rem 0;
+  margin-top: -10px;
+  transition: color 0.5s ease;
+}
+.downMenuWrapper button:hover {
+  color: var(--lightGreen);
+}
+.downMenuWrapper a,
+.downMenuWrapper button {
+  color: var(--almostWhite);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+.cartContainer {
+  width: 100vw;
+  height: 90vh;
+  position: absolute;
+  top: 10vh;
+  right: 0;
+  background: var(--almostWhite);
+  transition: all 0.5s ease;
+}
+.hideCart {
+  display: none;
+  overflow: hidden;
+}
+.closeBtn {
+  border: none;
+  background: transparent;
+  color: var(--red);
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2rem;
+}
+.cartTitle {
+  margin-top: 2rem;
+  text-align: center;
+}
+.cartItemsWrapper {
+  width: 100%;
+  height: 65vh;
+  margin: 0 auto;
+  overflow-y: scroll;
+}
+.totalWrapper {
+  padding: 0 0.5rem;
+}
+.totalWrapper header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.totalWrapper header h4 {
+  font-size: 1.2rem;
+}
+
+.checkoutBtnWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkoutBtn {
+  padding: 0.2rem 1.5rem;
+  border: none;
+  border-radius: 15px;
+  background: var(--red);
+  color: var(--almostWhite);
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+  margin-bottom: 1rem;
+}
+.checkoutBtnWrapper p {
+  font-weight: 500;
+}
+.loginBtn {
+  background: none;
+  border: none;
+  color: var(--red);
+  padding: 0.5rem;
+  font-size: 1.3rem;
+}
+.cartItemWrapper {
+  height: 10vh;
+  width: 90%;
+  margin: 1rem auto;
+  padding: 0.3rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cartImageWrapper {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cartImage {
+  height: 10vh;
+  width: auto;
+  max-width: 100%;
+}
+.cartItemWrapper article {
+  width: 75%;
+  margin-left: 0.5rem;
+}
+.cartItemWrapper h4 {
+  font-size: 1rem;
+}
+.cartItemWrapper article p {
+  color: var(--red);
+}
+.cartItemWrapper article button {
+  background: none;
+  border: none;
+  color: var(--darkGreen);
+  outline: none;
+}
+.cartItemWrapper div button {
+  background: none;
+  border: none;
+  padding: 0.2rem;
+  outline: none;
+}
+.cartItemWrapper div h4 {
+  text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+  .cartContainer {
+    width: 60vw;
+  }
+  .totalWrapper {
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+  }
+  .totalWrapper header {
+    margin: 0.5rem;
+  }
+  .logo {
+    width: 120px;
+  }
+  .cartImageWrapper {
+    width: 30%;
+  }
+  .menuBars {
+    font-size: 3rem;
+    height: 60px;
+  }
+}
+@media screen and (min-width: 900px) and (orientation: landscape) {
+  .menuBars {
+    display: none;
+  }
+  .navLinks {
+    display: flex;
+    margin-left: 8rem;
+  }
+  .login {
+    display: block;
+  }
+
+  .downMenuWrapper {
+    display: none;
+  }
+  .cartContainer {
+    width: 30vw;
+  }
+  .navHome {
+    background: transparent;
+  }
+  .navHome .navLinks ul li:not(:first-child) a,
+  .navHome .login,
+  .navHome .logincart .cartWrapper button svg {
+    color: var(--black);
+    font-weight: 500;
+  }
+  .navHome .navLinks ul li:not(:first-child) a:hover,
+  .navHome .login:hover,
+  .navHome .logincart .cartWrapper button svg:hover {
+    color: var(--darkGreen);
+  }
+
+  .cartWrapper {
+    margin-right: 1rem;
+    margin-left: 0;
+  }
+
+  .logo {
+    margin-left: 2rem;
+  }
+}

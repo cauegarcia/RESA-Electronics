@@ -1,0 +1,234 @@
+:root {
+  --lightGreen: #72e990;
+  --darkGreen: #2fda4e;
+  --almostWhite: #f1f2f9;
+  --white: #ffffff;
+  --black: #110f1a;
+  --red: #c42021;
+  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+.singleProductWrapper {
+  position: relative;
+}
+.container {
+  min-height: 84vh;
+  padding-bottom: 10vh;
+  margin-top: 10vh;
+}
+.blackBg {
+  width: 100%;
+  height: 30vh;
+  background: var(--black);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.backProducts {
+  color: var(--darkGreen);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.2rem;
+}
+.imgWrapper {
+  min-height: 45vh;
+  width: 80vw;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #a1ff9f 0%,
+    rgba(205, 255, 204, 0.79) 64.58%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.imgWrapper img {
+  min-height: 200px;
+  max-height: 40vh;
+  min-width: auto;
+  max-width: 80vw;
+}
+.mainInfo {
+  width: 80vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.mainInfo h4 {
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.price {
+  color: var(--red);
+  margin: 0.2rem 0;
+}
+.colorsContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.colorsWrapper {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+}
+.colorCircle {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px solid black;
+  margin: 0 0.2rem;
+}
+.quantityContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+.quantityContainer button {
+  border: none;
+  background: transparent;
+  color: var(--black);
+  font-size: 1.4rem;
+}
+.quantityContainer h4 {
+  font-size: 2rem;
+  margin: 0 0.5rem;
+  color: var(--darkGreen);
+}
+.addBtn {
+  border: none;
+  font-size: 1.1rem;
+  background: var(--darkGreen);
+  text-transform: uppercase;
+}
+.description {
+  width: 90vw;
+  padding: 1rem;
+  text-align: center;
+  margin: 0 auto;
+}
+.description h4 {
+  text-transform: uppercase;
+  margin: 0.5rem 0;
+}
+.description p {
+  text-align: justify;
+}
+.recommendations {
+  height: 20vh;
+  width: 95vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+.divRec {
+  display: flex;
+  flex-direction: row;
+}
+.recWrapper {
+  width: 80vw;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.recItemWrapper {
+  width: auto;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #a1ff9f 0%,
+    rgba(205, 255, 204, 0.79) 64.58%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recItemWrapper img {
+  max-height: 15vh;
+  max-width: 80%;
+  min-width: auto;
+}
+.recommendations button {
+  border: none;
+  background: transparent;
+  font-size: 2rem;
+}
+@media screen and (min-width: 600px) {
+  .imgWrapper {
+    width: 60vw;
+  }
+  .description {
+    width: 60vw;
+  }
+  .backProducts {
+    font-size: 1.3rem;
+  }
+}
+@media screen and (min-width: 900px) and (orientation: landscape) {
+  .blackBg {
+    height: 40vh;
+  }
+  .imgInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    height: 50vh;
+    margin: 0 auto;
+    margin-top: 10vh;
+  }
+  .imgWrapper {
+    min-height: 40vh;
+    max-height: 100%;
+    width: 40%;
+  }
+  .imgWrapper img {
+    min-height: 200px;
+    max-height: 40;
+    min-width: auto;
+    max-width: 80%;
+  }
+  .mainInfo {
+    padding-top: 5vh;
+    height: 80%;
+    width: 45%;
+  }
+  .mainInfo h3 {
+    color: var(--lightGreen);
+  }
+  .mainInfo h4 {
+    color: white;
+    mix-blend-mode: difference;
+    font-size: 1.5vw;
+    font-weight: 300;
+  }
+  .quantityContainer h4 {
+    font-size: 1.7rem;
+  }
+  .price {
+    color: rgb(247, 85, 85) !important;
+    mix-blend-mode: none !important;
+  }
+  .addBtn {
+    font-size: 1.5rem;
+  }
+  .description {
+    width: 60vw;
+  }
+}

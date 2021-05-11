@@ -1,0 +1,155 @@
+:root {
+  --lightGreen: #72e990;
+  --darkGreen: #2fda4e;
+  --almostWhite: #f1f2f9;
+  --white: #ffffff;
+  --black: #110f1a;
+  --red: #c42021;
+  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.aboutWrapper {
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.container {
+  min-height: 82vh;
+  margin-top: 9vh;
+}
+.navAbout {
+  width: 100%;
+  min-height: 5vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navAbout h1 {
+  color: var(--almostWhite);
+  font-size: 2.2rem;
+  padding: 0.5rem 0;
+  text-transform: uppercase;
+}
+.navAbout h1 span {
+  color: var(--darkGreen);
+}
+.presentation {
+  width: 80%;
+  min-height: 30vh;
+  margin: 0 auto;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.presentation p {
+  text-align: justify;
+}
+.presentation img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  padding-top: 3rem;
+}
+.presentation figcaption {
+  font-size: 0.8rem;
+  padding-bottom: 1rem;
+}
+.photoWrapper {
+  text-align: center;
+}
+.support {
+  width: 80%;
+  margin: 0 auto;
+  text-align: justify;
+  padding: 1rem 0;
+}
+.support span {
+  color: var(--red);
+}
+.worldLogo {
+  display: block;
+  width: 80vw;
+  margin: 0 auto;
+  height: auto;
+  margin-bottom: -4vh;
+}
+.blur {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+.solid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.supportLogoWrapper {
+  min-height: 39vh;
+  padding-bottom: 10vh;
+}
+@media screen and (min-width: 600px) {
+  .presentation,
+  .support {
+    width: 65vw;
+  }
+  .worldLogo {
+    width: 80vw;
+    margin-bottom: -5vh;
+  }
+}
+@media screen and (min-width: 900px) and (orientation: landscape) {
+  .container {
+    font-size: 1.2rem;
+  }
+  .presentation {
+    width: 80vw;
+    flex-direction: row;
+    height: auto;
+    margin-top: 0;
+    min-height: 25vh;
+  }
+  .presentation p,
+  .presentation .photoWrapper {
+    width: 45vw;
+    margin: 0 1rem;
+  }
+  .supportLogoWrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    margin: 0 auto;
+    padding: 0 1rem;
+    padding-bottom: 3rem;
+    min-height: 25vh;
+  }
+  .supportLogoWrapper p {
+    width: 40vw;
+    margin: 0 1rem;
+    text-align: justify;
+    margin-left: 60%;
+  }
+  .worldLogo {
+    width: 45vw;
+    margin: 0 1rem;
+    margin-bottom: -2vh;
+    position: absolute;
+    left: 5vw;
+    bottom: 6vh;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .container {
+    font-size: 1.4rem;
+  }
+}

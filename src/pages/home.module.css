@@ -1,0 +1,227 @@
+:root {
+  --lightGreen: #72e990;
+  --darkGreen: #2fda4e;
+  --almostWhite: #f1f2f9;
+  --white: #ffffff;
+  --black: #110f1a;
+  --red: #c42021;
+  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+.heroContainer {
+  position: relative;
+  overflow: hidden;
+}
+.heroWrapper {
+  overflow-y: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.heroDesc {
+  width: 100%;
+  min-height: 50vh;
+  background: var(--black);
+  padding: 0.2rem 2rem;
+  padding-top: 10vh;
+  padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.heroDesc h2 {
+  color: var(--lightGreen);
+  padding-bottom: 0.2rem;
+  line-height: 1.2;
+}
+.heroDesc p {
+  font-family: "Josefin Sans", sans-serif;
+  width: 90%;
+  padding: 1rem 0;
+  color: var(--almostWhite);
+  font-weight: 300;
+}
+.heroCaroussel {
+  position: relative;
+  background: var(--white);
+  min-height: auto;
+  margin: auto 0;
+}
+.callAction {
+  margin: 0.5rem 0;
+}
+.actionLink {
+  color: var(--almostWhite);
+  padding: 0.2rem 0.5rem;
+  background: var(--red);
+}
+
+.carousselWrapper {
+  width: 80%;
+  height: 37vh;
+  margin: 0 auto;
+  background: radial-gradient(
+    49.93% 49.93% at 50% 50.07%,
+    #a1ff9f 0%,
+    rgba(178, 255, 176, 0.7) 70.65%,
+    rgba(193, 255, 191, 0) 100%
+  );
+  position: relative;
+}
+
+.imagesCaroussel {
+  height: 80%;
+  overflow-y: hidden;
+  position: relative;
+}
+.imagesCaroussel button,
+.imagesCaroussel input {
+  position: absolute;
+  right: 0;
+}
+.btnUp,
+.btnDown {
+  background: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
+}
+.btnUp {
+  top: 29%;
+}
+.btnDown {
+  top: 70%;
+}
+.item1 {
+  top: 40%;
+}
+.item2 {
+  top: 50%;
+}
+.item3 {
+  top: 60%;
+}
+.imagesCaroussel label img {
+  height: 25vh;
+  width: auto;
+}
+.imagesCaroussel label {
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.item2:checked ~ .label2 {
+  transform: translate(-50%, -50%);
+}
+.item2:checked ~ .label1 {
+  transform: translate(-50%, -60vh);
+  opacity: 0;
+}
+.item2:checked ~ .label3 {
+  transform: translate(-50%, 60vh);
+  opacity: 0;
+}
+.item1:checked ~ .label1 {
+  transform: translate(-50%, -50%);
+}
+.item1:checked ~ .label3 {
+  transform: translate(-50%, -60vh);
+  opacity: 0;
+}
+.item1:checked ~ .label2 {
+  transform: translate(-50%, 60vh);
+  opacity: 0;
+}
+.item3:checked ~ .label3 {
+  transform: translate(-50%, -50%);
+}
+.item3:checked ~ .label2 {
+  transform: translate(-50%, -60vh);
+  opacity: 0;
+}
+.item3:checked ~ .label1 {
+  transform: translate(-50%, 60vh);
+  opacity: 0;
+}
+
+@media screen and (min-width: 600px) {
+  .heroCaroussel {
+    background: transparent;
+  }
+  .heroWrapper {
+    background: var(--white);
+  }
+  .heroDesc {
+    padding: 2rem 3rem;
+    padding-top: 10vh;
+  }
+  .heroDesc h2 {
+    font-size: 2.5rem;
+  }
+  .heroDesc p {
+    margin-bottom: 1rem;
+    max-width: 60%;
+    padding-top: 2rem;
+    font-size: 1.4rem;
+  }
+}
+@media screen and (min-width: 900px) and (orientation: landscape) {
+  .heroWrapper {
+    height: 82vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: url("../images/hero-bg.jpg");
+    background-position: right bottom;
+    background-size: 75% 75%;
+    background-repeat: no-repeat;
+  }
+  .heroDesc {
+    width: 50vw;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .heroDesc h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  .heroDesc p {
+    font-size: 1.2rem;
+    max-width: 80%;
+    text-align: left;
+    padding-top: 0.2rem;
+  }
+  .heroCaroussel {
+    width: 60vw;
+    min-height: 82vh;
+  }
+  .carousselWrapper {
+    height: 50vh;
+    width: 90%;
+    margin: 0;
+    margin-top: 18vh;
+  }
+  .imagesCaroussel {
+    overflow-x: hidden;
+    margin: auto 0;
+    height: 50vh;
+    width: 52vw;
+    max-width: 600px;
+  }
+  .imagesCaroussel label img {
+    height: 48vh;
+    width: auto;
+  }
+  .callAction h3 {
+    font-size: 1.75rem;
+  }
+  .actionLink {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.2rem;
+  }
+}

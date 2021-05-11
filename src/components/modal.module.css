@@ -1,0 +1,147 @@
+:root {
+  --lightGreen: #72e990;
+  --darkGreen: #2fda4e;
+  --almostWhite: #f1f2f9;
+  --white: #ffffff;
+  --black: #110f1a;
+  --red: #c42021;
+  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+button {
+  cursor: pointer;
+}
+.modalWrapper {
+  position: fixed;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 84vh;
+  z-index: 10;
+  background: var(--black);
+  display: none;
+}
+.showModal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.showModal form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.closeBtn {
+  border: none;
+  background: transparent;
+  color: var(--red);
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2rem;
+}
+.showModal h3 {
+  margin-bottom: 0.5rem;
+  color: var(--almostWhite);
+}
+.showModal input {
+  padding: 0.5rem;
+  margin: 1rem 0;
+  width: 70%;
+  background: none;
+  border: none;
+  border-bottom: 2px solid var(--darkGreen);
+  outline: none;
+  color: var(--almostWhite);
+}
+.showModal input::placeholder {
+  color: var(--almostWhite);
+}
+.loginBtn {
+  display: block;
+  margin: 0 auto;
+  padding: 0.2rem 2rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  border: none;
+  background: var(--darkGreen);
+  border-radius: 2rem;
+  color: var(--almostWhite);
+}
+.needRegister {
+  padding: 2rem;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.2rem;
+  color: var(--almostWhite);
+}
+.needRegister button {
+  border: none;
+  background: transparent;
+  color: var(--red);
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.2rem;
+}
+.success,
+.alert,
+.password {
+  margin-top: -1rem;
+  font-size: 1rem;
+}
+.success {
+  color: var(--darkGreen);
+  font-size: 1.2rem;
+}
+.alert,
+.password {
+  color: var(--red);
+}
+.password {
+  max-width: 80%;
+  text-align: justify;
+}
+
+@media screen and (min-width: 600px) {
+  .password {
+    max-width: 100%;
+  }
+  .logIn {
+    width: 50%;
+  }
+  .logIn input {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+  .closeBtn {
+    left: 2rem;
+    top: 2rem;
+    font-size: 2.5rem;
+  }
+}
+@media screen and (min-width: 900px) and (orientation: landscape) {
+  .modalWrapper {
+    width: 50%;
+    max-width: 700px;
+    max-height: 1000px;
+  }
+
+  .logIn input {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+  .closeBtn {
+    left: 90%;
+    top: 2rem;
+    font-size: 3rem;
+  }
+  .loginBtn {
+    font-size: 1.5rem;
+  }
+}
