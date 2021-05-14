@@ -137,6 +137,12 @@
   text-transform: capitalize;
   color: var(--darkGreen);
 }
+.itemDesc footer a {
+  transition: all 0.5s ease;
+}
+.itemDesc footer a:hover {
+  background: var(--darkGreen);
+}
 .itemDesc footer button {
   border: none;
   text-transform: uppercase;

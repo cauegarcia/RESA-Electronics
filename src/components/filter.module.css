@@ -16,7 +16,7 @@
   overflow-y: scroll;
   top: 10vh;
   right: 0;
-  width: 60vw;
+  width: 100vw;
   background: var(--almostWhite);
 }
 
@@ -33,7 +33,7 @@
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 2rem;
   outline: none;
   border: none;
   color: var(--red);
@@ -128,7 +128,7 @@
     width: 100%;
     position: relative;
     top: 0;
-    padding: 0.5rem 1rem;
+    padding: 0.6vw 1.3vw;
     padding-bottom: 6vh;
   }
   .closeBtn {

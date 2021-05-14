@@ -2,6 +2,7 @@ import React from "react";
 import { AiOutlineShoppingCart, AiOutlineCloseCircle } from "react-icons/ai";
 import { useGlobalContext } from "../context";
 import { BiUpArrow, BiDownArrow } from "react-icons/bi";
+import { Link } from "react-router-dom";
 const Cart = ({ style }) => {
   let {
     loggedIn,
@@ -16,7 +17,11 @@ const Cart = ({ style }) => {
 
   const checkLog = () => {
     if (loggedIn) {
-      return <button className={style.checkoutBtn}>Checkout</button>;
+      return (
+        <Link to="/checkout" className={style.checkoutBtn}>
+          Checkout
+        </Link>
+      );
     } else {
       return (
         <p>
@@ -29,6 +34,9 @@ const Cart = ({ style }) => {
     }
   };
   total = total.toFixed(2);
+  const totalItems = items.reduce((acc, item) => {
+    return (acc += +item.amount);
+  }, 0);
   return (
     <>
       <div className={style.cartWrapper}>
@@ -36,7 +44,7 @@ const Cart = ({ style }) => {
           <AiOutlineShoppingCart className={style.cart} />
         </button>
         <div className={style.cartAmount}>
-          <p>{items.length}</p>
+          <p>{totalItems}</p>
         </div>
       </div>
       <div
@@ -52,7 +60,7 @@ const Cart = ({ style }) => {
         <h4 className={style.cartTitle}>CART</h4>
         <div className={style.cartItemsWrapper}>
           {items.map((item) => {
-            const { nameShort, price, amount, image, id } = item;
+            const { nameShort, price, amount, image, id, color } = item;
             return (
               <div className={style.cartItemWrapper} key={id}>
                 <div className={style.cartImageWrapper}>
@@ -65,6 +73,7 @@ const Cart = ({ style }) => {
                 <article>
                   <h4>{nameShort}</h4>
                   <p>${price}</p>
+                  <p style={{ color: `${color}` }}>{color.toUpperCase()}</p>
                   <button
                     onClick={() => {
                       removeItem(id);

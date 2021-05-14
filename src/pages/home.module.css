@@ -54,6 +54,11 @@
   color: var(--almostWhite);
   padding: 0.2rem 0.5rem;
   background: var(--red);
+  transition: all 0.5s ease;
+}
+.actionLink:hover {
+  color: var(--red);
+  background: var(--almostWhite);
 }
 
 .carousselWrapper {
@@ -211,7 +216,7 @@
     margin: auto 0;
     height: 50vh;
     width: 52vw;
-    max-width: 600px;
+    /* max-width: 600px; */
   }
   .imagesCaroussel label img {
     height: 48vh;

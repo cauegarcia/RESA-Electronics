@@ -66,6 +66,9 @@
   font-weight: 400;
   text-transform: capitalize;
 }
+.mainInfo h5 {
+  margin-top: 0.5;
+}
 .price {
   color: var(--red);
   margin: 0.2rem 0;
@@ -87,8 +90,13 @@
   height: 30px;
   width: 30px;
   border-radius: 50%;
-  border: 1px solid black;
   margin: 0 0.2rem;
+}
+.inputRadio {
+  display: none;
+}
+.inputRadio:checked + label {
+  border: 2px solid var(--darkGreen);
 }
 .quantityContainer {
   display: flex;

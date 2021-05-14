@@ -63,7 +63,8 @@ button {
 .showModal input::placeholder {
   color: var(--almostWhite);
 }
-.loginBtn {
+.loginSingleBtn,
+.loginGoogleBtn {
   display: block;
   margin: 0 auto;
   padding: 0.2rem 2rem;
@@ -71,10 +72,28 @@ button {
   font-size: 1.1rem;
   font-weight: 600;
   margin-top: 0.5rem;
-  border: none;
+  transition: all 0.5s ease;
+}
+.loginSingleBtn {
+  border: 2px solid transparent;
   background: var(--darkGreen);
   border-radius: 2rem;
   color: var(--almostWhite);
+}
+.loginGoogleBtn {
+  border: 2px solid var(--darkGreen);
+  background: var(--white);
+  border-radius: 2rem;
+  color: var(--darkGreen);
+}
+.loginSingleBtn:hover {
+  color: var(--white);
+  background: var(--red);
+}
+.loginGoogleBtn:hover {
+  color: var(--white);
+  border: 2px solid transparent;
+  background: var(--red);
 }
 .needRegister {
   padding: 2rem;
@@ -88,6 +107,10 @@ button {
   color: var(--red);
   font-family: "Josefin Sans", sans-serif;
   font-size: 1.2rem;
+  transition: color 0.5s ease;
+}
+.needRegister button:hover {
+  color: var(--darkGreen);
 }
 .success,
 .alert,

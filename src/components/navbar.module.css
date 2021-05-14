@@ -230,9 +230,13 @@
   color: var(--red);
   padding: 0.5rem;
   font-size: 1.3rem;
+  transition: color 0.5s ease;
+}
+.loginBtn:hover {
+  color: var(--darkGreen);
 }
 .cartItemWrapper {
-  height: 10vh;
+  min-height: 80px;
   width: 90%;
   margin: 1rem auto;
   padding: 0.3rem 0;

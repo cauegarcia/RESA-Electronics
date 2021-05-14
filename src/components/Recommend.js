@@ -13,12 +13,11 @@ const Recommend = ({ style, id }) => {
     return item.category === itemCategory && item.id !== id;
   });
 
-  console.log(itemsToRecommend);
   return (
     <>
       {itemsToRecommend.map((item) => {
         return (
-          <Link to={`/product/${item.id}`}>
+          <Link key={item.id} to={`/product/${item.id}`}>
             <div className={style.recItemWrapper}>
               <img
                 src={`${process.env.PUBLIC_URL}/assets/products/${item.image}`}

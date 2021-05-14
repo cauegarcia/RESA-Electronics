@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./singleproduct.module.css";
 import NavBar from "../components/navbar";
 import Footer from "../components/footer";
@@ -14,27 +14,47 @@ import {
 } from "react-icons/ai";
 
 const SingleProduct = () => {
+  const [currentColor, setCurrentColor] = useState("");
   let { id } = useParams();
-  const {
-    stock,
-    amountToCart,
-    increaseAmount,
-    decreaseAmount,
-    addToCart,
-  } = useGlobalContext();
+  const { stock, amountToCart, increaseAmount, decreaseAmount, addToCart } =
+    useGlobalContext();
   id = parseInt(id);
   const [item] = stock.filter((item) => {
     if (item.id === id) return true;
     return false;
   });
-
+  useEffect(() => {
+    const initialCheck = Array.from(
+      document.querySelectorAll(["input[type='radio']"])
+    );
+    initialCheck[0].checked = true;
+    setCurrentColor(initialCheck[0].value);
+  }, []);
+  const updateColor = (e) => {
+    console.log(e.target.htmlFor);
+    const inputChecked = document.getElementById(e.target.htmlFor);
+    console.log(inputChecked);
+    setCurrentColor(inputChecked.value);
+  };
   const checkColors = (colors) => {
-    return colors.map((color) => {
+    return colors.map((color, index) => {
       return (
-        <div
-          className={style.colorCircle}
-          style={{ background: `${color}` }}
-        ></div>
+        <React.Fragment key={index}>
+          <input
+            id={index}
+            style={{ display: "none" }}
+            type="radio"
+            name="color"
+            value={color}
+            className={style.inputRadio}
+          ></input>
+          <label
+            htmlFor={index}
+            className={style.colorCircle}
+            style={{ backgroundColor: `${color}` }}
+            onClick={(e) => updateColor(e)}
+          ></label>
+        </React.Fragment>
       );
     });
   };
@@ -66,6 +86,9 @@ const SingleProduct = () => {
                 {checkColors(item.colors)}
               </div>
             </div>
+            <h5>
+              Color selected: {currentColor ? currentColor.toUpperCase() : ""}
+            </h5>
             <div className={style.quantityContainer}>
               <button
                 onClick={() => {
@@ -86,7 +109,7 @@ const SingleProduct = () => {
             <button
               className={["btn", style.addBtn].join(" ")}
               onClick={() => {
-                addToCart(item.id);
+                addToCart({ id: item.id, color: currentColor });
               }}
             >
               Add to Cart

@@ -34,7 +34,7 @@ const initialState = {
     password: "",
     confirmPassword: "",
   },
-  users: [],
+  currentUser: "",
   registerConfirmation: false,
   alert: {
     show: false,
@@ -54,8 +54,8 @@ const AppProvider = ({ children }) => {
   const toggleModal = () => {
     dispatch({ type: "TOGGLE_MODAL" });
   };
-  const toggleLogin = () => {
-    dispatch({ type: "TOGGLE_LOGIN" });
+  const toggleLogin = (e) => {
+    dispatch({ type: "TOGGLE_LOGIN", payload: e });
   };
   const increaseAmount = (id, type) => {
     dispatch({ type: "INCREASE_AMOUNT", payload: { id, type } });
@@ -91,8 +91,8 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "DELETE_TAG", payload: e });
     dispatch({ type: "UPDATE_ITEMSFILTERED" });
   };
-  const addToCart = (id) => {
-    dispatch({ type: "ADD_TO_CART", payload: id });
+  const addToCart = ({ id, color }) => {
+    dispatch({ type: "ADD_TO_CART", payload: { id, color } });
   };
   const toggleRegister = () => {
     dispatch({ type: "TOGGLE_REGISTER" });
@@ -113,22 +113,25 @@ const AppProvider = ({ children }) => {
   const displayAlert = ({ show, msg, type, caller }) => {
     dispatch({ type: "DISPLAY_ALERT", payload: { show, msg, type, caller } });
   };
-  useEffect(() => {
-    if (state.formValid) {
-      dispatch({ type: "HANDLE_REGISTER" });
-      displayAlert({
-        show: true,
-        msg: "Register Succesful",
-        type: "success",
-        caller: "register",
-      });
-    }
-  }, [state.formValid]);
+  const setCurrentUser = (user) => {
+    dispatch({ type: "SET_CURRENT_USER", payload: user });
+  };
+  const resetPerson = () => {
+    dispatch({ type: "RESET_PERSON" });
+  };
+  const setInitialCart = () => {
+    dispatch({ type: "SET_INITIAL_CART" });
+  };
+  const toggleFormValid = () => {
+    dispatch({ type: "TOGGLE_FORM_VALID" });
+  };
+
   useEffect(() => {
     selectSort("price-lowest");
   }, []);
   useEffect(() => {
     dispatch({ type: "GET_TOTAL" });
+    dispatch({ type: "UPDATE_LOCAL_STORAGE" });
   }, [state.cart.items]);
 
   return (
@@ -154,6 +157,10 @@ const AppProvider = ({ children }) => {
         displayAlert,
         handleLogin,
         toggleLogin,
+        setCurrentUser,
+        resetPerson,
+        setInitialCart,
+        toggleFormValid,
       }}
     >
       {children}

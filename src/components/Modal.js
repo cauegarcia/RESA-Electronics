@@ -3,6 +3,11 @@ import style from "./modal.module.css";
 import { useGlobalContext } from "../context";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import Alert from "./Alert";
+import {
+  signInWithGoogle,
+  auth,
+  createUserProfileDocument,
+} from "../firebase/firebase.utils";
 
 const Modal = () => {
   const {
@@ -13,10 +18,65 @@ const Modal = () => {
     handlePerson,
     handleRegister,
     handleLogin,
+    resetPerson,
+    formValid,
+    displayAlert,
+    toggleFormValid,
     alert: { ...alert },
     person: { ...person },
   } = useGlobalContext();
+  const [loginInput, setLoginInput] = React.useState({
+    email: "",
+    password: "",
+  });
+  const onInputLoginChange = (e) => {
+    e.preventDefault();
+    const name = e.target.name;
+    const value = e.target.value;
 
+    setLoginInput({ ...loginInput, [name]: value });
+  };
+
+  React.useEffect(() => {
+    const manageRegister = async () => {
+      const { email, fullName, password } = person;
+      console.log(person.email);
+      try {
+        const { user } = await auth.createUserWithEmailAndPassword(
+          email,
+          password
+        );
+        await createUserProfileDocument(user, { displayName: fullName });
+        resetPerson();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (formValid) manageRegister();
+    displayAlert({
+      show: true,
+      msg: "Register Succesful",
+      type: "success",
+      caller: "register",
+    });
+    toggleFormValid();
+  }, [formValid]);
+  const login = async (e) => {
+    e.preventDefault();
+    const { email, password } = loginInput;
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      setLoginInput({
+        email: "",
+        password: "",
+      });
+      handleLogin("success");
+    } catch (error) {
+      console.log(error);
+      if (error.code === "auth/wrong-password") handleLogin("password");
+      if (error.code === "auth/user-not-found") handleLogin("email");
+    }
+  };
   if (register) {
     return (
       <div
@@ -65,18 +125,6 @@ const Modal = () => {
               onChange={(e) => {
                 handlePerson(e);
               }}
-              type="tel"
-              placeholder="(XXX) XXX-XXXX"
-              inputMode="numeric"
-              name="phone"
-              value={person.phone}
-              required
-            />
-            {alert.show && alert.caller === "phone" && <Alert style={style} />}
-            <input
-              onChange={(e) => {
-                handlePerson(e);
-              }}
               type="password"
               placeholder="New password"
               autoComplete="off"
@@ -104,7 +152,7 @@ const Modal = () => {
             {alert.show && alert.caller === "register" && (
               <Alert style={style} />
             )}
-            <button type="submit" className={style.loginBtn}>
+            <button type="submit" className={style.loginSingleBtn}>
               REGISTER
             </button>
           </form>
@@ -133,30 +181,45 @@ const Modal = () => {
           <h3>SIGN IN</h3>
           <form
             onSubmit={(e) => {
-              handleLogin(e);
+              login(e);
             }}
           >
             <input
+              name="email"
               type="email"
               placeholder="Email"
               autoComplete="off"
+              value={loginInput.email}
+              onChange={(e) => onInputLoginChange(e)}
               required
             />
             {alert.show && alert.caller === "invalidEmail" && (
               <Alert style={style} />
             )}
             <input
+              name="password"
               type="password"
               placeholder="Password"
               autoComplete="off"
+              value={loginInput.password}
+              onChange={(e) => onInputLoginChange(e)}
               required
             />
             {alert.show && alert.caller === "invalidPassword" && (
               <Alert style={style} />
             )}
             {alert.show && alert.caller === "login" && <Alert style={style} />}
-            <button type="submit" className={style.loginBtn}>
+            <button type="submit" className={style.loginSingleBtn}>
               LOGIN
+            </button>
+            <button
+              onClick={async () => {
+                await signInWithGoogle();
+                handleLogin("success");
+              }}
+              className={style.loginGoogleBtn}
+            >
+              SIGN IN WITH GOOGLE
             </button>
           </form>
           <div className={style.needRegister}>

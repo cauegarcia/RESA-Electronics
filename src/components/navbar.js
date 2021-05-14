@@ -6,15 +6,11 @@ import Cart from "./cart";
 import { Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useGlobalContext } from "../context";
+import { auth } from "../firebase/firebase.utils";
 
 const NavBar = ({ home }) => {
-  const {
-    menuOpen,
-    toggleMenu,
-    toggleModal,
-    toggleLogin,
-    loggedIn,
-  } = useGlobalContext();
+  const { menuOpen, toggleMenu, toggleModal, toggleLogin, loggedIn } =
+    useGlobalContext();
   return (
     <nav
       className={`${home ? [style.nav, style.navHome].join(" ") : style.nav}`}
@@ -30,7 +26,7 @@ const NavBar = ({ home }) => {
           className={style.login}
           onClick={() => {
             if (loggedIn) {
-              toggleLogin();
+              auth.signOut();
             } else {
               toggleModal();
             }

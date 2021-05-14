@@ -1,4 +1,5 @@
 const reducer = (state, action) => {
+  console.log(action);
   if (action.type === "TOGGLE_MENU") {
     return { ...state, menuOpen: !state.menuOpen };
   }
@@ -6,7 +7,7 @@ const reducer = (state, action) => {
     return { ...state, modalOpen: !state.modalOpen };
   }
   if (action.type === "TOGGLE_LOGIN") {
-    return { ...state, loggedIn: !state.loggedIn };
+    return { ...state, loggedIn: action.payload };
   }
   if (action.type === "GET_TOTAL") {
     let total = state.cart.items.reduce(
@@ -350,11 +351,15 @@ const reducer = (state, action) => {
   if (action.type === "ADD_TO_CART") {
     if (
       state.cart.items.some((item) => {
-        return item.id === action.payload;
+        return (
+          item.id === action.payload.id && item.color === action.payload.color
+        );
       })
     ) {
       const tempItems = state.cart.items.map((item) => {
-        return item.id !== action.payload
+        return item.id !== action.payload.id
+          ? item
+          : item.color !== action.payload.color
           ? item
           : { ...item, amount: item.amount + state.amountToCart };
       });
@@ -367,14 +372,35 @@ const reducer = (state, action) => {
       };
     } else {
       const itemToAdd = state.stock.filter((item) => {
-        return item.id === action.payload;
+        return item.id === action.payload.id;
       });
       itemToAdd[0].amount = state.amountToCart;
+      const createId = (length) => {
+        const result = [];
+        const characters = "0123456789";
+        const charactersLength = characters.length;
+        for (let i = 0; i < length; i++) {
+          result.push(
+            characters.charAt(Math.floor(Math.random() * charactersLength))
+          );
+        }
+        return result.join("");
+      };
       return {
         ...state,
         cart: {
           ...state.cart,
-          items: [...state.cart.items, ...itemToAdd],
+          items: [
+            ...state.cart.items,
+            {
+              id: parseInt(createId(5)),
+              color: action.payload.color,
+              amount: itemToAdd[0].amount,
+              nameShort: itemToAdd[0].nameShort,
+              price: itemToAdd[0].price,
+              image: itemToAdd[0].image,
+            },
+          ],
         },
       };
     }
@@ -417,7 +443,7 @@ const reducer = (state, action) => {
         };
       }
     }
-    if (name === "phone" || inputs[1]?.name === "email") {
+    if (name === "password" || inputs[1]?.name === "email") {
       const validate = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(
         state.person.email
       );
@@ -433,44 +459,6 @@ const reducer = (state, action) => {
             person: { ...state.person, email: "" },
           };
         }
-      }
-      if (value) {
-        value = value.replace(/[^0-9]/g, "").substr(0, 12);
-        let chunks = [];
-        if (value.length < 4) {
-          chunks[0] = [value.slice(0, 3)];
-        }
-        if (value.length >= 4 && value.length < 7) {
-          chunks[0] = [`(${value.slice(0, 3)})`];
-          chunks[1] = [value.slice(3, 6)];
-        }
-        if (value.length >= 7 && value.length < 12) {
-          chunks[0] = [`(${value.slice(0, 3)})`];
-          chunks[1] = [`${value.slice(3, 6)}-${value.slice(6, 10)}`];
-        }
-        value = chunks.join(" ");
-
-        return {
-          ...state,
-          alert: tempAlert,
-          person: { ...state.person, phone: value },
-        };
-      }
-    }
-    if (
-      (name === "password" || inputs[2]?.name === "phone") &&
-      state.person.phone.length < 12
-    ) {
-      tempAlert.show = true;
-      tempAlert.msg = "Please enter a valid US phone number";
-      tempAlert.type = "alert";
-      tempAlert.caller = "phone";
-      if (inputs.length > 0) {
-        return {
-          ...state,
-          alert: tempAlert,
-          person: { ...state.person, phone: "" },
-        };
       }
     }
     if (name === "confirmPassword" || inputs[3]?.name === "password") {
@@ -519,49 +507,33 @@ const reducer = (state, action) => {
       };
     }
   }
-  if (action.type === "HANDLE_REGISTER") {
-    const newUser = { ...state.person };
-    const tempUsers = [...state.users];
-    tempUsers.push(newUser);
-    const resetPerson = {
-      fullName: "",
-      email: "",
-      phone: "",
-      password: "",
-      confirmPassword: "",
-    };
+  if (action.type === "TOGGLE_FORM_VALID") {
     return {
       ...state,
-      users: tempUsers,
-      person: resetPerson,
       formValid: false,
     };
   }
   if (action.type === "HANDLE_LOGIN") {
-    action.payload.preventDefault();
-    const inputs = Array.from(action.payload.target.querySelectorAll("input"));
-    const user = state.users.filter((user) => user.email === inputs[0].value);
     let tempAlert = { ...state.alert };
-    if (user.length > 0) {
-      if (user[0].password === inputs[1].value) {
-        tempAlert.show = true;
-        tempAlert.msg = "Login Succesful";
-        tempAlert.type = "success";
-        tempAlert.caller = "login";
-        return {
-          ...state,
-          loggedIn: !state.loggedIn,
-          alert: tempAlert,
-          modalOpen: !state.modalOpen,
-        };
-      } else {
-        tempAlert.show = true;
-        tempAlert.msg = "Invalid Password";
-        tempAlert.type = "alert";
-        tempAlert.caller = "invalidPassword";
-        return { ...state, alert: tempAlert };
-      }
-    } else {
+    if (action.payload === "success") {
+      tempAlert.show = true;
+      tempAlert.msg = "Login Succesful";
+      tempAlert.type = "success";
+      tempAlert.caller = "login";
+      return {
+        ...state,
+        alert: tempAlert,
+        modalOpen: !state.modalOpen,
+      };
+    }
+    if (action.payload === "password") {
+      tempAlert.show = true;
+      tempAlert.msg = "Invalid Password";
+      tempAlert.type = "alert";
+      tempAlert.caller = "invalidPassword";
+      return { ...state, alert: tempAlert };
+    }
+    if (action.payload === "email") {
       tempAlert.show = true;
       tempAlert.msg = "User not found. Please verify the user email inserted";
       tempAlert.type = "alert";
@@ -581,6 +553,44 @@ const reducer = (state, action) => {
         type: action.payload.type,
         caller: action.payload.caller,
       },
+    };
+  }
+  if (action.type === "SET_CURRENT_USER") {
+    return {
+      ...state,
+      currentUser: action.payload,
+    };
+  }
+  if (action.type === "RESET_PERSON") {
+    const resetPerson = {
+      fullName: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirmPassword: "",
+    };
+    return {
+      ...state,
+      person: resetPerson,
+      formValid: false,
+    };
+  }
+  if (action.type === "UPDATE_LOCAL_STORAGE") {
+    if (state.cart.items.length > 0) {
+      const cartItems = JSON.stringify({ cart: state.cart.items });
+      window.localStorage.setItem("RESA_CART", cartItems);
+    }
+
+    return {
+      ...state,
+    };
+  }
+  if (action.type === "SET_INITIAL_CART") {
+    let cartItems = window.localStorage.getItem("RESA_CART");
+    cartItems = JSON.parse(cartItems);
+    return {
+      ...state,
+      cart: { ...state.cart, items: cartItems.cart },
     };
   }
   throw new Error("no matching action type");
