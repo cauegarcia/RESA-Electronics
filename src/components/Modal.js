@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import style from "./modal.module.css";
 import { useGlobalContext } from "../context";
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -36,31 +36,35 @@ const Modal = () => {
 
     setLoginInput({ ...loginInput, [name]: value });
   };
+  const manageRegister = useCallback(async () => {
+    const { email, fullName, password } = person;
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      await createUserProfileDocument(user, { displayName: fullName });
+      resetPerson();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [person, resetPerson]);
 
   React.useEffect(() => {
-    const manageRegister = async () => {
-      const { email, fullName, password } = person;
-      console.log(person.email);
-      try {
-        const { user } = await auth.createUserWithEmailAndPassword(
-          email,
-          password
-        );
-        await createUserProfileDocument(user, { displayName: fullName });
-        resetPerson();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (formValid) manageRegister();
-    displayAlert({
-      show: true,
-      msg: "Register Succesful",
-      type: "success",
-      caller: "register",
-    });
-    toggleFormValid();
-  }, [formValid]);
+    if (formValid) {
+      manageRegister();
+      displayAlert({
+        show: true,
+        msg: "Register Succesful",
+        type: "success",
+        caller: "register",
+      });
+      toggleFormValid();
+      setTimeout(() => {
+        toggleModal();
+      }, 2000);
+    }
+  }, [formValid, displayAlert, manageRegister, toggleFormValid, toggleModal]);
   const login = async (e) => {
     e.preventDefault();
     const { email, password } = loginInput;
@@ -93,6 +97,7 @@ const Modal = () => {
           <h3>REGISTER</h3>
           <form
             onSubmit={(e) => {
+              e.preventDefault();
               handleRegister(e);
             }}
             id="registerForm"

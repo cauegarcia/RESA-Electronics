@@ -14,7 +14,7 @@ const Checkout = () => {
 
   useEffect(() => {
     toggleCart();
-  }, []);
+  }, [toggleCart]);
   if (currentUser) {
     const { displayName, email } = currentUser;
     const { total, items } = cart;

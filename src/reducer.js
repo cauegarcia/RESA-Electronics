@@ -1,5 +1,4 @@
 const reducer = (state, action) => {
-  console.log(action);
   if (action.type === "TOGGLE_MENU") {
     return { ...state, menuOpen: !state.menuOpen };
   }
@@ -420,15 +419,15 @@ const reducer = (state, action) => {
     action.payload.preventDefault();
     let inputs = [];
     if (action.payload.target.id === "registerForm") {
+      inputs.push(state.person);
       inputs = Array.from(action.payload.target.querySelectorAll("input"));
     }
 
     const name = action.payload.target.name;
-    let value = action.payload.target.value;
 
     let tempAlert = { ...state.alert };
     if (
-      (name === "email" || inputs[0]?.name === "fullName") &&
+      (name === "email" || inputs.length > 0) &&
       state.person.fullName.length < 3
     ) {
       tempAlert.show = true;
@@ -443,8 +442,8 @@ const reducer = (state, action) => {
         };
       }
     }
-    if (name === "password" || inputs[1]?.name === "email") {
-      const validate = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(
+    if (name === "password" || inputs.length > 0) {
+      const validate = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(
         state.person.email
       );
       if (!validate) {
@@ -461,7 +460,7 @@ const reducer = (state, action) => {
         }
       }
     }
-    if (name === "confirmPassword" || inputs[3]?.name === "password") {
+    if (name === "confirmPassword" || inputs.length > 0) {
       const validate = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/g.test(
         state.person.password
       );
@@ -576,10 +575,8 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === "UPDATE_LOCAL_STORAGE") {
-    if (state.cart.items.length > 0) {
-      const cartItems = JSON.stringify({ cart: state.cart.items });
-      window.localStorage.setItem("RESA_CART", cartItems);
-    }
+    const cartItems = JSON.stringify({ cart: state.cart.items });
+    window.localStorage.setItem("RESA_CART", cartItems);
 
     return {
       ...state,

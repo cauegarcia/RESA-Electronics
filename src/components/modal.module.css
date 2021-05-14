@@ -21,6 +21,8 @@ button {
   z-index: 10;
   background: var(--black);
   display: none;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 .showModal {
   display: flex;
@@ -28,6 +30,16 @@ button {
   justify-content: center;
   flex-direction: column;
   text-align: center;
+}
+.showModal:before {
+  content: "";
+  position: fixed;
+  top: -100%;
+  left: -100%;
+  z-index: -1;
+  width: 200vw;
+  height: 200vh;
+  background: rgba(0, 0, 0, 0.5);
 }
 .showModal form {
   display: flex;
@@ -85,6 +97,7 @@ button {
   background: var(--white);
   border-radius: 2rem;
   color: var(--darkGreen);
+  margin-top: 1.5rem;
 }
 .loginSingleBtn:hover {
   color: var(--white);

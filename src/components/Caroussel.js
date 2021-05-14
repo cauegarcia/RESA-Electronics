@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import item1 from "../images/herocaroussel-1.png";
 import item2 from "../images/herocaroussel-2.png";
 import item3 from "../images/herocaroussel-3.png";
@@ -9,7 +9,7 @@ const Caroussel = ({ style }) => {
   const input2 = useRef(null);
   const input3 = useRef(null);
 
-  const goUp = () => {
+  const goUp = useCallback(() => {
     if (!input1.current) {
       return;
     }
@@ -26,7 +26,7 @@ const Caroussel = ({ style }) => {
     setTimeout(() => {
       goUp();
     }, 4000);
-  };
+  }, []);
   const goDown = () => {
     if (input1.current.checked) {
       input1.current.checked = false;
@@ -52,7 +52,7 @@ const Caroussel = ({ style }) => {
     setTimeout(() => {
       goUp();
     }, 4000);
-  }, []);
+  }, [goUp]);
   return (
     <>
       <div className={style.radiosCaroussel}></div>

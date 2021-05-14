@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useReducer } from "react";
+import React, { useEffect, useContext, useReducer, useCallback } from "react";
 import reducer from "./reducer";
 import { stock } from "./stock";
 
@@ -51,12 +51,12 @@ const AppProvider = ({ children }) => {
   const toggleMenu = () => {
     dispatch({ type: "TOGGLE_MENU" });
   };
-  const toggleModal = () => {
+  const toggleModal = useCallback(() => {
     dispatch({ type: "TOGGLE_MODAL" });
-  };
-  const toggleLogin = (e) => {
+  }, []);
+  const toggleLogin = useCallback((e) => {
     dispatch({ type: "TOGGLE_LOGIN", payload: e });
-  };
+  }, []);
   const increaseAmount = (id, type) => {
     dispatch({ type: "INCREASE_AMOUNT", payload: { id, type } });
   };
@@ -68,9 +68,9 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "REMOVE_ITEM", payload: id });
     dispatch({ type: "UPDATE_CART" });
   };
-  const toggleCart = () => {
+  const toggleCart = useCallback(() => {
     dispatch({ type: "TOGGLE_CART" });
-  };
+  }, []);
   const toggleFilter = () => {
     dispatch({ type: "TOGGLE_FILTER" });
   };
@@ -94,9 +94,9 @@ const AppProvider = ({ children }) => {
   const addToCart = ({ id, color }) => {
     dispatch({ type: "ADD_TO_CART", payload: { id, color } });
   };
-  const toggleRegister = () => {
+  const toggleRegister = useCallback(() => {
     dispatch({ type: "TOGGLE_REGISTER" });
-  };
+  }, []);
   const handlePerson = (e) => {
     dispatch({ type: "HANDLE_PERSON", payload: e });
     dispatch({ type: "CHECK_FORM", payload: e });
@@ -107,24 +107,24 @@ const AppProvider = ({ children }) => {
   const handleLogin = (e) => {
     dispatch({ type: "HANDLE_LOGIN", payload: e });
   };
-  const resetAlert = () => {
+  const resetAlert = useCallback(() => {
     dispatch({ type: "RESET_ALERT" });
-  };
-  const displayAlert = ({ show, msg, type, caller }) => {
+  }, []);
+  const displayAlert = useCallback(({ show, msg, type, caller }) => {
     dispatch({ type: "DISPLAY_ALERT", payload: { show, msg, type, caller } });
-  };
-  const setCurrentUser = (user) => {
+  }, []);
+  const setCurrentUser = useCallback((user) => {
     dispatch({ type: "SET_CURRENT_USER", payload: user });
-  };
+  }, []);
   const resetPerson = () => {
     dispatch({ type: "RESET_PERSON" });
   };
-  const setInitialCart = () => {
+  const setInitialCart = useCallback(() => {
     dispatch({ type: "SET_INITIAL_CART" });
-  };
-  const toggleFormValid = () => {
+  }, []);
+  const toggleFormValid = useCallback(() => {
     dispatch({ type: "TOGGLE_FORM_VALID" });
-  };
+  }, []);
 
   useEffect(() => {
     selectSort("price-lowest");

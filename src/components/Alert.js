@@ -15,7 +15,7 @@ const Alert = ({ style }) => {
       alert.caller === "password" ? 8000 : 3000
     );
     return () => clearTimeout(timeout);
-  }, []);
+  }, [alert, toggleRegister, resetAlert]);
   return <div className={style[alert.type]}>{alert.msg}</div>;
 };
 

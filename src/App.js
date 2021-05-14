@@ -17,10 +17,11 @@ import { useGlobalContext } from "./context";
 const App = () => {
   const { setCurrentUser, currentUser, toggleLogin, loggedIn, setInitialCart } =
     useGlobalContext();
-  let unsubscribeFromAuth = () => {
-    return null;
-  };
+
   useEffect(() => {
+    let unsubscribeFromAuth = () => {
+      return null;
+    };
     unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -36,11 +37,11 @@ const App = () => {
     return () => {
       unsubscribeFromAuth();
     };
-  }, []);
+  }, [setInitialCart, setCurrentUser]);
   useEffect(() => {
     if (currentUser) toggleLogin(true);
     if (!currentUser) toggleLogin(false);
-  }, [currentUser]);
+  }, [currentUser, toggleLogin]);
   return (
     <>
       <Router>
