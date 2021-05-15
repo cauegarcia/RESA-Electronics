@@ -585,10 +585,16 @@ const reducer = (state, action) => {
   if (action.type === "SET_INITIAL_CART") {
     let cartItems = window.localStorage.getItem("RESA_CART");
     cartItems = JSON.parse(cartItems);
-    return {
-      ...state,
-      cart: { ...state.cart, items: cartItems.cart },
-    };
+    if (cartItems) {
+      return {
+        ...state,
+        cart: { ...state.cart, items: cartItems.cart },
+      };
+    } else {
+      return {
+        ...state,
+      };
+    }
   }
   throw new Error("no matching action type");
 };
