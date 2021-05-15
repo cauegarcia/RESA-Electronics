@@ -164,6 +164,7 @@
   padding-left: 12px;
   cursor: pointer;
   color: var(--red);
+  min-width: 78px;
 }
 .total {
   margin-top: 30px;

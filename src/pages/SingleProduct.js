@@ -31,9 +31,7 @@ const SingleProduct = () => {
     setCurrentColor(initialCheck[0].value);
   }, []);
   const updateColor = (e) => {
-    console.log(e.target.htmlFor);
     const inputChecked = document.getElementById(e.target.htmlFor);
-    console.log(inputChecked);
     setCurrentColor(inputChecked.value);
   };
   const checkColors = (colors) => {

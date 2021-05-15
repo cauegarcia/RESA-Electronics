@@ -90,6 +90,7 @@
   height: 30px;
   width: 30px;
   border-radius: 50%;
+  border: 2px solid grey;
   margin: 0 0.2rem;
 }
 .inputRadio {
