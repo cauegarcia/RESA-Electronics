@@ -35,9 +35,13 @@ const CheckoutItem = ({ item, style }) => {
       <div className={style.priceWrapper}>
         <span>{price}</span>
         <span
-          style={{
-            color: `${color}`,
-          }}
+          style={
+            color === "white"
+              ? {
+                  color: `grey`,
+                }
+              : { color: `${color}` }
+          }
         >
           {color.toUpperCase()}
         </span>

@@ -68,8 +68,8 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "REMOVE_ITEM", payload: id });
     dispatch({ type: "UPDATE_CART" });
   };
-  const toggleCart = useCallback(() => {
-    dispatch({ type: "TOGGLE_CART" });
+  const toggleCart = useCallback((e) => {
+    dispatch({ type: "TOGGLE_CART", payload: e });
   }, []);
   const toggleFilter = () => {
     dispatch({ type: "TOGGLE_FILTER" });

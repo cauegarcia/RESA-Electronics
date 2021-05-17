@@ -16,8 +16,14 @@ import {
 const SingleProduct = () => {
   const [currentColor, setCurrentColor] = useState("");
   let { id } = useParams();
-  const { stock, amountToCart, increaseAmount, decreaseAmount, addToCart } =
-    useGlobalContext();
+  const {
+    stock,
+    amountToCart,
+    increaseAmount,
+    decreaseAmount,
+    addToCart,
+    toggleCart,
+  } = useGlobalContext();
   id = parseInt(id);
   const [item] = stock.filter((item) => {
     if (item.id === id) return true;
@@ -108,6 +114,7 @@ const SingleProduct = () => {
               className={["btn", style.addBtn].join(" ")}
               onClick={() => {
                 addToCart({ id: item.id, color: currentColor });
+                toggleCart(true);
               }}
             >
               Add to Cart

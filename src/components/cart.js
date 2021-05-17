@@ -73,7 +73,17 @@ const Cart = ({ style }) => {
                 <article>
                   <h4>{nameShort}</h4>
                   <p>${price}</p>
-                  <p style={{ color: `${color}` }}>{color.toUpperCase()}</p>
+                  <p
+                    style={
+                      color === "black"
+                        ? {
+                            color: `grey`,
+                          }
+                        : { color: `${color}` }
+                    }
+                  >
+                    {color.toUpperCase()}
+                  </p>
                   <button
                     onClick={() => {
                       removeItem(id);
@@ -87,11 +97,13 @@ const Cart = ({ style }) => {
                     onClick={() => {
                       increaseAmount(id, "cart");
                     }}
+                    style={{ color: "#FFF" }}
                   >
                     <BiUpArrow />
                   </button>
                   <h4>{amount}</h4>
                   <button
+                    style={{ color: "#FFF" }}
                     onClick={() => {
                       decreaseAmount(id, "cart");
                     }}

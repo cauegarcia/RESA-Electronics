@@ -193,6 +193,19 @@
   margin: 0 auto;
   overflow-y: scroll;
 }
+.cartItemsWrapper::-webkit-scrollbar {
+  width: 9px;
+}
+
+.cartItemsWrapper::-webkit-scrollbar-track {
+  background: var(--black);
+}
+
+.cartItemsWrapper::-webkit-scrollbar-thumb {
+  background-color: var(--darkGreen);
+  border-radius: 20px;
+  border: 3px solid var(--darkGreen);
+}
 .totalWrapper {
   padding: 0 0.5rem;
 }
@@ -223,6 +236,11 @@
   text-transform: uppercase;
   letter-spacing: 0.25rem;
   margin-bottom: 1rem;
+  transition: all 0.5s ease;
+}
+.checkoutBtn:hover {
+  background: var(--almostWhite);
+  color: var(--red);
 }
 .checkoutBtnWrapper p {
   font-weight: 500;
@@ -264,6 +282,9 @@
 .cartItemWrapper article {
   width: 75%;
   margin-left: 0.5rem;
+}
+.cartItemWrapper article div button {
+  color: var(--almostWhite);
 }
 .cartItemWrapper h4 {
   font-size: 1rem;

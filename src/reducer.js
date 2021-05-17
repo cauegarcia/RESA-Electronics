@@ -77,6 +77,9 @@ const reducer = (state, action) => {
     return { ...state, cart: { ...state.cart, items: itemsToCart } };
   }
   if (action.type === "TOGGLE_CART") {
+    if (action.payload) {
+      if (action.payload.type === true) return { ...state, cartOpen: true };
+    }
     return { ...state, cartOpen: !state.cartOpen };
   }
   if (action.type === "TOGGLE_FILTER") {

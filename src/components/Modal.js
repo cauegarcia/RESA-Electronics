@@ -218,6 +218,7 @@ const Modal = () => {
               LOGIN
             </button>
             <button
+              type="button"
               onClick={async () => {
                 await signInWithGoogle();
                 handleLogin("success");

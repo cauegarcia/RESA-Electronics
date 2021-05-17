@@ -13,7 +13,7 @@ const Checkout = () => {
   const { currentUser, cart, toggleCart } = useGlobalContext();
 
   useEffect(() => {
-    toggleCart();
+    toggleCart(true);
   }, [toggleCart]);
   if (currentUser) {
     const { displayName, email } = currentUser;
