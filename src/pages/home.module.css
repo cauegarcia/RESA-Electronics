@@ -83,13 +83,16 @@
 .imagesCaroussel input {
   position: absolute;
   right: 0;
+  opacity: 0.8;
 }
 .btnUp,
-.btnDown {
+.btnDown,
+.imagesCaroussel input {
   background: transparent;
   border: none;
   padding: 0;
   outline: none;
+  margin: 0;
 }
 .btnUp {
   top: 29%;

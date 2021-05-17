@@ -58,6 +58,7 @@
 .sort {
   padding: 0.2rem 0.5rem;
   border-radius: 2rem;
+  overflow: hidden;
   font-family: "Poppins", sans-serif;
 }
 .filterBtn {
