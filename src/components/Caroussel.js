@@ -55,7 +55,7 @@ const Caroussel = ({ style }) => {
   }, [goUp]);
   return (
     <>
-      <div className={style.radiosCaroussel}></div>
+      {/* <div className={style.radiosCaroussel}></div> */}
       <div className={style.imagesCaroussel}>
         <button className={style.btnUp} onClick={goUp}>
           <BiUpArrow />

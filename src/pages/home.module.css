@@ -82,8 +82,8 @@
 .imagesCaroussel button,
 .imagesCaroussel input {
   position: absolute;
-  right: 0;
-  opacity: 0.8;
+  right: 3%;
+  opacity: 0.7;
 }
 .btnUp,
 .btnDown,

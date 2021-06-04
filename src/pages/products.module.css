@@ -60,6 +60,7 @@
   border-radius: 2rem;
   overflow: hidden;
   font-family: "Poppins", sans-serif;
+  background: transparent;
 }
 .filterBtn {
   background: var(--darkGreen) !important;
