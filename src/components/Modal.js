@@ -45,14 +45,6 @@ const Modal = () => {
       );
       await createUserProfileDocument(user, { displayName: fullName });
       resetPerson();
-    } catch (error) {
-      console.log(error);
-    }
-  }, [person, resetPerson]);
-
-  React.useEffect(() => {
-    if (formValid) {
-      manageRegister();
       displayAlert({
         show: true,
         msg: "Register Succesful",
@@ -63,8 +55,33 @@ const Modal = () => {
       setTimeout(() => {
         toggleModal();
       }, 2000);
+    } catch (error) {
+      console.log(error);
+      toggleFormValid();
+      if (error.code === "auth/email-already-in-use") {
+        displayAlert({
+          show: true,
+          msg: "Email already registered",
+          type: "alert",
+          caller: "register",
+        });
+        document.getElementById("form-email").select();
+      } else {
+        displayAlert({
+          show: true,
+          msg: "Sorry, an error occurred",
+          type: "alert",
+          caller: "register",
+        });
+      }
     }
-  }, [formValid, displayAlert, manageRegister, toggleFormValid, toggleModal]);
+  }, [person, resetPerson, displayAlert, toggleFormValid, toggleModal]);
+
+  React.useEffect(() => {
+    if (formValid) {
+      manageRegister();
+    }
+  }, [formValid, manageRegister]);
   const login = async (e) => {
     e.preventDefault();
     const { email, password } = loginInput;
@@ -122,6 +139,7 @@ const Modal = () => {
               placeholder="Email"
               autoComplete="off"
               name="email"
+              id="form-email"
               value={person.email}
               required
             />

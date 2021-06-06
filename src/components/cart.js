@@ -40,7 +40,11 @@ const Cart = ({ style }) => {
   return (
     <>
       <div className={style.cartWrapper}>
-        <button className={style.btnCart} onClick={toggleCart}>
+        <button
+          className={style.btnCart}
+          onClick={toggleCart}
+          aria-label="Cart"
+        >
           <AiOutlineShoppingCart className={style.cart} />
         </button>
         <div className={style.cartAmount}>
@@ -54,7 +58,11 @@ const Cart = ({ style }) => {
             : style.cartContainer
         }`}
       >
-        <button className={style.closeBtn} onClick={toggleCart}>
+        <button
+          className={style.closeBtn}
+          onClick={toggleCart}
+          aria-label="Close cart"
+        >
           <AiOutlineCloseCircle />
         </button>
         <h4 className={style.cartTitle}>CART</h4>
@@ -88,6 +96,7 @@ const Cart = ({ style }) => {
                     onClick={() => {
                       removeItem(id);
                     }}
+                    aria-label="remove item"
                   >
                     Remove
                   </button>

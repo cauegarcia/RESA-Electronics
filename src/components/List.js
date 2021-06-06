@@ -14,6 +14,7 @@ const List = ({ style }) => {
                 <img
                   src={`${process.env.PUBLIC_URL}/assets/products/${item.image}`}
                   alt={item.name}
+                  loading="lazy"
                 />
               </div>
               <div className={style.itemDesc}>

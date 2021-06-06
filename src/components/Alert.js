@@ -8,7 +8,7 @@ const Alert = ({ style }) => {
     const timeout = setTimeout(
       () => {
         resetAlert();
-        if (alert.caller === "register") {
+        if (alert.caller === "register" && alert.type !== "alert") {
           toggleRegister();
         }
       },

@@ -57,7 +57,11 @@ const Caroussel = ({ style }) => {
     <>
       {/* <div className={style.radiosCaroussel}></div> */}
       <div className={style.imagesCaroussel}>
-        <button className={style.btnUp} onClick={goUp}>
+        <button
+          className={style.btnUp}
+          onClick={goUp}
+          aria-label="skip up item"
+        >
           <BiUpArrow />
         </button>
         <input
@@ -81,7 +85,11 @@ const Caroussel = ({ style }) => {
           name="caroussel"
           ref={input3}
         ></input>
-        <button className={style.btnDown} onClick={goDown}>
+        <button
+          className={style.btnDown}
+          onClick={goDown}
+          aria-label="skip down item"
+        >
           <BiDownArrow />
         </button>
         <label htmlFor="item1" className={style.label1}>

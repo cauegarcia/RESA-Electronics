@@ -31,12 +31,13 @@ const NavBar = ({ home }) => {
               toggleModal();
             }
           }}
+          aria-label="Login"
         >
           {loggedIn ? "Logout" : "Login"}
         </button>
         <Cart style={style} />
       </div>
-      <button className={style.menuBars} onClick={toggleMenu}>
+      <button className={style.menuBars} onClick={toggleMenu} aria-label="menu">
         <AiOutlineMenu />
       </button>
       <div
